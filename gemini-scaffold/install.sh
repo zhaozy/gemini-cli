@@ -6,11 +6,11 @@ GREEN='\033[0;32m'
 BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
-echo -e "${BLUE}=== Gemini CLI Cognitive Scaffold Installer ===${NC}"
+echo -e "${BLUE}=== Gemini CLI Cognitive Scaffold Installer (Project MNEMOSYNE) ===${NC}"
 
-# 1. Check for uv
+# 1. Check for uv (The Astral Stack)
 if ! command -v uv &> /dev/null; then
-    echo "Installing uv (The Astral Stack)..."
+    echo "Installing uv..."
     curl -LsSf https://astral.sh/uv/install.sh | sh
 else
     echo -e "${GREEN}✓ uv is already installed.${NC}"
@@ -18,69 +18,36 @@ fi
 
 # 2. Check for gh (GitHub CLI)
 if ! command -v gh &> /dev/null; then
-    echo "Installing GitHub CLI (gh) via Homebrew..."
-    brew install gh
+    echo "Installing GitHub CLI (gh)..."
+    brew install gh || echo "Please install GitHub CLI manually."
 else
     echo -e "${GREEN}✓ gh is already installed.${NC}"
 fi
 
-# Ensure gh is logged in
-if ! gh auth status &>/dev/null; then
-    echo -e "${BLUE}⚠ 请在终端执行 'gh auth login -p ssh -w' 以授权自动化仓库创建能力。${NC}"
-fi
-
-# 2. Setup Root Structure
-TARGET_DIR=$(pwd)
-echo "Initializing Gemini environment in: $TARGET_DIR"
-
-# Create .gemini/tasks
+# 3. Setup Global Structure
+echo "Deploying cognitive architecture..."
 mkdir -p .gemini/tasks
 cp gemini-scaffold/templates/tasks/* .gemini/tasks/
-
-# Create GEMINI.md
 cp gemini-scaffold/templates/ROOT_GEMINI.md GEMINI.md
 
-# 3. Deploy Digital Workforce (Employees)
+# 4. Deploy Digital Workforce (Employees)
 mkdir -p employees
 if [ -d "gemini-scaffold/employees" ]; then
     cp -r gemini-scaffold/employees/* employees/
+    echo -e "${GREEN}✓ Digital Workforce (employees/) successfully deployed.${NC}"
 fi
 
-# 4. Initialize Projects Container
+# 5. Initialize Projects Container
 mkdir -p projects
+echo -e "${GREEN}✓ Projects container (projects/) initialized.${NC}"
 
-# 5. Create helper scripts
+# 6. Create automation scripts
 mkdir -p .gemini/bin
+cp gemini-scaffold/bin/* .gemini/bin/ 2>/dev/null || true
+chmod +x .gemini/bin/* 2>/dev/null || true
 
-# Helper: New Employee
-cat > .gemini/bin/new_employee <<EOF
-#!/bin/bash
-if [ -z "\$1" ]; then
-    echo "Usage: \$0 <employee_name>"
-    exit 1
+echo -e "${BLUE}=== Setup Complete ===${NC}"
+echo "You are now ready. To hire an expert or create a project, use scripts in .gemini/bin/."
+if ! gh auth status &>/dev/null; then
+    echo -e "${BLUE}⚠ Reminder: Run 'gh auth login -p ssh -w' to enable cloud automation.${NC}"
 fi
-EMP_NAME=\$1
-mkdir -p employees/\$EMP_NAME/SOPs
-cp gemini-scaffold/templates/employee/manifest.json employees/\$EMP_NAME/
-cp gemini-scaffold/templates/employee/commands.json employees/\$EMP_NAME/
-cp gemini-scaffold/templates/employee/SOPs/* employees/\$EMP_NAME/SOPs/
-echo "Hired new employee: \$EMP_NAME"
-EOF
-
-# Helper: New Project
-cat > .gemini/bin/new_project <<EOF
-#!/bin/bash
-if [ -z "\$1" ]; then
-    echo "Usage: \$0 <project_name>"
-    exit 1
-fi
-PROJECT_NAME=\$1
-mkdir -p projects/\$PROJECT_NAME/.gemini/tasks
-sed "s/{{PROJECT_NAME}}/\$PROJECT_NAME/g" gemini-scaffold/templates/PROJECT_GEMINI.md > projects/\$PROJECT_NAME/GEMINI.md
-touch projects/\$PROJECT_NAME/.gemini/tasks/{current_task,memory,implementation_plan,walkthrough}.md
-echo "Initialized project: \$PROJECT_NAME in projects/ directory."
-EOF
-
-chmod +x .gemini/bin/new_employee .gemini/bin/new_project
-
-echo -e "${GREEN}✓ Setup Complete. Architecture is now Project-Aware.${NC}"

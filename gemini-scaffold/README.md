@@ -63,8 +63,6 @@ root/
 ├── GEMINI.md           # [核心] 全局宪法
 ├── .gemini/
 │   └── tasks/          # [记忆] 全局任务与偏好
-├── _skills/            # [扩展] 自定义工具脚本
-└── {project_name}/     # [业务] 具体子项目
-    ├── GEMINI.md       # 项目 SOP
-    └── .gemini/tasks/  # 项目级记忆
+├── employees/          # [大脑] 数字雇员及其 SOP
+└── projects/           # [车间] 协作话题容器
 ```
