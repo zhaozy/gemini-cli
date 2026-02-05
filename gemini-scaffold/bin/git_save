@@ -1,0 +1,29 @@
+#!/bin/bash
+# Smart Git Save v4.0: Documentation-Linked Commit
+set -e
+
+# 参数 1: 外部传入的总结内容 (Optional)
+AI_SUMMARY=$1
+
+# 1. 如果没有外部总结，则尝试从本地获取
+if [ -z "$AI_SUMMARY" ]; then
+    if [ -f ".gemini/tasks/walkthrough.md" ]; then
+        AI_SUMMARY=$(tail -n 10 .gemini/tasks/walkthrough.md | grep "^-" | tail -n 1 | sed 's/^- //')
+    else
+        AI_SUMMARY="Routine maintenance and optimization"
+    fi
+fi
+
+# 2. 执行本地提交
+git add .
+if git commit -m "$AI_SUMMARY"; then
+    echo "✓ 提交成功: $AI_SUMMARY"
+    
+    # 3. 自动同步 GitHub
+    if git remote | grep -q "origin"; then
+        echo "正在同步云端..."
+        git push origin $(git branch --show-current) --quiet && echo "✓ 云端同步完成。" || echo "⚠ 推送失败。"
+    fi
+else
+    echo "无变更需要提交。"
+fi

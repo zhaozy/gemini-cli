@@ -8,6 +8,9 @@
 - 监听用户反馈，定期在 `memory.md` 中提炼普适逻辑并反馈至 `SOPs/`。
 
 ## 3. 全局同步与版本控制
-- 定期触发 `sync_to_scaffold.sh`，确保“安装母盘”处于最新状态。
-- **原子提交原则**：在每个子任务完成并记录至 `walkthrough.md` 后，应调用 `.gemini/bin/git_save` 执行本地快照。
-- **任务隔离**：处理复杂实验性任务前，调用 `.gemini/bin/git_task start` 开启独立分支。
+- **自动总结原则**：在调用 `.gemini/bin/git_save` 前，Agent 必须：
+    1. 汇总 `walkthrough.md` 中的近期关键动作。
+    2. 更新 `CHANGELOG.md`，记录版本号与变更细节。
+    3. 更新 `README.md` 的“最新状态”章节。
+    4. 将该总结作为参数传递给 `git_save`。
+- **线性历史**：保持主分支的整洁。
