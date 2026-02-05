@@ -10,6 +10,7 @@
 - **认知持久化 (Cognitive Persistence)**: 通过 `.gemini/tasks/` 实现跨会话的记忆恢复，确保 AI 永远记得上一步在哪。
 - **核壳分离架构 (Core-Shell)**: 严格区分计算逻辑与 IO 边界，遵循 [编程之道 (THE_CODE_TAO)](docs/THE_CODE_TAO.md)。
 - **自动化版本控制**: 集成智能 Git 工作流，自动提取任务记录作为提交信息。
+- **一键开荒 (Cloud Native)**: 通过 GitHub CLI (`gh`) 自动为每一个新协作单元创建云端私有仓库并同步。
 - **防腐化容器**: 所有协作话题强制入仓 (`projects/`)，保持根目录极致整洁。
 
 ## 📂 目录结构

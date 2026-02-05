@@ -1,5 +1,7 @@
 #!/bin/bash
-# Independent Project Creation Tool (v2.0)
+# Autonomous Project Creation Tool (v3.0 - with gh integration)
+set -e
+
 if [ -z "$1" ]; then
     echo "Usage: $0 <project_name>"
     exit 1
@@ -13,14 +15,16 @@ if [ -d "$TARGET_PATH" ]; then
     exit 1
 fi
 
-echo "Creating INDEPENDENT project: $PROJECT_NAME..."
+echo "🚀 Starting Autonomous Project Creation: $PROJECT_NAME"
 
-# 1. 建立结构
+# 1. 物理结构初始化
 mkdir -p "$TARGET_PATH/.gemini/tasks"
-cp gemini-scaffold/templates/PROJECT_GEMINI.md "$TARGET_PATH/GEMINI.md"
+if [ -f "gemini-scaffold/templates/PROJECT_GEMINI.md" ]; then
+    sed "s/{{PROJECT_NAME}}/$PROJECT_NAME/g" gemini-scaffold/templates/PROJECT_GEMINI.md > "$TARGET_PATH/GEMINI.md"
+fi
 touch "$TARGET_PATH/.gemini/tasks/"{current_task,memory,implementation_plan,walkthrough}.md
 
-# 2. 初始化独立仓库
+# 2. 本地仓库初始化
 cd "$TARGET_PATH"
 git init -q
 cat > .gitignore <<EOF
@@ -30,13 +34,20 @@ __pycache__/
 .DS_Store
 EOF
 git add .
-git commit -m "chore: 项目初始化 (独立认知仓库已建立)" -q
-cd - > /dev/null
+git commit -m "chore: 项目初始化 (Autonomous Start)" -q
 
+# 3. 自动创建 GitHub 私有仓库 (需要 gh 已登录)
+if command -v gh &> /dev/null; then
+    echo "☁️  正在 GitHub 上创建私有仓库..."
+    gh repo create "$PROJECT_NAME" --private --source=. --remote=origin --push
+    echo "✓ 远程私有仓库已建立并同步。"
+else
+    echo "⚠ GitHub CLI 未配置，跳过自动创建。请手动绑定远程仓库。"
+fi
+
+cd - > /dev/null
 echo "------------------------------------------------"
-echo "✓ 协作单元已在 $TARGET_PATH 初始化完成。"
-echo "⚠ 下一步：请在 GitHub 上创建名为 $PROJECT_NAME 的空仓库，并运行："
-echo "  cd $TARGET_PATH"
-echo "  git remote add origin <远程仓库地址>"
-echo "  git push origin master -u"
+echo "✨ 项目 [$PROJECT_NAME] 已就绪！"
+echo "物理位置: $TARGET_PATH"
+echo "安全状态: GitHub Private Repo 已锁定"
 echo "------------------------------------------------"

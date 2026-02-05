@@ -16,6 +16,19 @@ else
     echo -e "${GREEN}✓ uv is already installed.${NC}"
 fi
 
+# 2. Check for gh (GitHub CLI)
+if ! command -v gh &> /dev/null; then
+    echo "Installing GitHub CLI (gh) via Homebrew..."
+    brew install gh
+else
+    echo -e "${GREEN}✓ gh is already installed.${NC}"
+fi
+
+# Ensure gh is logged in
+if ! gh auth status &>/dev/null; then
+    echo -e "${BLUE}⚠ 请在终端执行 'gh auth login -p ssh -w' 以授权自动化仓库创建能力。${NC}"
+fi
+
 # 2. Setup Root Structure
 TARGET_DIR=$(pwd)
 echo "Initializing Gemini environment in: $TARGET_DIR"

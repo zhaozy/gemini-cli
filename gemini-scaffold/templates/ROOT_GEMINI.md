@@ -18,8 +18,9 @@
 
 ### 1.3 自动化初始化原则 (Automated Initialization)
 **强制指令**：当 Agent 识别到进入一个新话题、需要开启一项独立工作或创建新项目时，必须遵循以下物理约束：
-1. **路径强制**：所有新协作单元**必须**创建在根目录的 `projects/` 文件夹下。**严禁**在根目录下直接创建工作文件夹。
-2. **创建上下文**：在 `projects/{{unit_name}}/` 根目录下生成 `GEMINI.md`。
+1. **路径强制**：所有新协作单元**必须**创建在根目录的 `projects/` 文件夹下。
+2. **自动仓库化**：通过 `gh` CLI 自动为新项目创建 GitHub 私有仓库并执行首次推送。
+3. **创建上下文**：在 `projects/{{unit_name}}/` 根目录下生成 `GEMINI.md`。
 3. **建立认知锚点**：创建 `.gemini/tasks/` 目录及其初始化文件（`current_task.md` 等）。
 
 ## 2. 环境规范 (Environment Standards)
