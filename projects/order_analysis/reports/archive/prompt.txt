@@ -1,0 +1,14 @@
+
+    You are a Senior Data Analyst. Based on the data in 'analysis_data.json', write a comprehensive insight report.
+    
+    Key Focus Areas:
+    1. Compare the strategic roles of different channels based on 'global_overview' and 'promo_stat'.
+    2. For each channel in 'channels', analyze its 'metrics' and 'top_categories' to define its user persona.
+    3. Deep dive into the 'cubes' (Drill-down scenarios). Pay attention to:
+       - 'associations': What items are bought together?
+       - 'clusters': Is the consumption dominated by 'Low Value' or 'High Value' clusters?
+       - 'promo_perf': Is the scenario promotion-driven?
+    
+    Output Format: Markdown.
+    Language: Simplified Chinese.
+    

@@ -1,0 +1,192 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>深度数据分析报告 v3</title>
+    
+<style>
+    body { font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; color: #24292e; }
+    h1, h2, h3 { border-bottom: 1px solid #eaecef; padding-bottom: .3em; }
+    table { border-collapse: collapse; width: 100%; margin: 15px 0; }
+    th, td { border: 1px solid #dfe2e5; padding: 6px 13px; }
+    th { background-color: #f6f8fa; font-weight: 600; }
+    tr:nth-child(2n) { background-color: #f6f8fa; }
+    code { background-color: rgba(27,31,35,.05); padding: .2em .4em; border-radius: 3px; }
+    blockquote { border-left: 4px solid #dfe2e5; color: #6a737d; padding-left: 1em; margin: 0; }
+</style>
+
+</head>
+<body>
+    <h1>深度数据分析报告：渠道交易结构特征 (v3)</h1>
+<blockquote>
+<p><strong>摘要</strong>: 本报告基于 2025-12-25 至 2026-01-13 的 81,516 条交易记录，针对不同渠道在时间、商品、促销维度的交易特征进行客观统计分析。</p>
+</blockquote>
+<h2>1. 渠道效能与促销特征</h2>
+<h3>1.1 数据呈现 (Data Presentation)</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">渠道</th>
+<th style="text-align: left;">GMV</th>
+<th style="text-align: left;">订单量</th>
+<th style="text-align: left;">客单价 (AOV)</th>
+<th style="text-align: left;">客件数 (UPT)</th>
+<th style="text-align: left;">折扣率</th>
+<th style="text-align: left;">促销订单占比</th>
+<th style="text-align: left;">Promo Uplift</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>万家App</strong></td>
+<td style="text-align: left;">774,401</td>
+<td style="text-align: left;">18,564</td>
+<td style="text-align: left;">¥41.7</td>
+<td style="text-align: left;">2.5</td>
+<td style="text-align: left;">19.5%</td>
+<td style="text-align: left;">93.7%</td>
+<td style="text-align: left;">-11.0%</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>饿了么</strong></td>
+<td style="text-align: left;">334,053</td>
+<td style="text-align: left;">7,982</td>
+<td style="text-align: left;">¥41.9</td>
+<td style="text-align: left;">3.2</td>
+<td style="text-align: left;">10.3%</td>
+<td style="text-align: left;">73.6%</td>
+<td style="text-align: left;">+2.6%</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>美团外卖</strong></td>
+<td style="text-align: left;">295,645</td>
+<td style="text-align: left;">5,264</td>
+<td style="text-align: left;">¥56.2</td>
+<td style="text-align: left;">3.8</td>
+<td style="text-align: left;">8.1%</td>
+<td style="text-align: left;">75.9%</td>
+<td style="text-align: left;">+4.4%</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>万家小程序</strong></td>
+<td style="text-align: left;">33,183</td>
+<td style="text-align: left;">558</td>
+<td style="text-align: left;">¥59.5</td>
+<td style="text-align: left;">5.0</td>
+<td style="text-align: left;">18.7%</td>
+<td style="text-align: left;">82.8%</td>
+<td style="text-align: left;">+43.5%</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>京东小时购</strong></td>
+<td style="text-align: left;">19,584</td>
+<td style="text-align: left;">342</td>
+<td style="text-align: left;">¥57.3</td>
+<td style="text-align: left;">4.6</td>
+<td style="text-align: left;">6.9%</td>
+<td style="text-align: left;">66.7%</td>
+<td style="text-align: left;">+2.7%</td>
+</tr>
+</tbody>
+</table>
+<h3>1.2 指标定义 (Definitions)</h3>
+<ul>
+<li><strong>折扣率</strong>: 总折扣金额 / (总实收金额 + 总折扣金额)。</li>
+<li><strong>Promo Uplift</strong>: <code>(促销单AOV - 正价单AOV) / 正价单AOV</code>。正值表示促销订单的客单价高于正价订单，负值表示低于。</li>
+</ul>
+<h3>1.3 数据现象 (Observations)</h3>
+<ol>
+<li><strong>促销结构差异</strong>: 万家App 的促销订单占比最高 (93.7%) 且折扣率最高 (19.5%)，但其 Promo Uplift 为负值 (-11.0%)，表明该渠道促销订单的平均金额低于非促销订单。</li>
+<li><strong>正向激励</strong>: 万家小程序 Promo Uplift 达到 +43.5%，且 UPT (5.0) 居所有渠道之首。数据表明该渠道促销订单往往伴随着更高的客单价和件数。</li>
+<li><strong>客单分层</strong>: 美团外卖、京东小时购、万家小程序的 AOV 均在 ¥56-60 区间，显著高于万家App 和饿了么的 ¥41-42 区间。</li>
+</ol>
+<hr />
+<h2>2. 渠道下钻：万家App (核心场景分析)</h2>
+<h3>2.1 数据呈现：场景切片对比</h3>
+<p><strong>切片 A: 工作日晚市 (Workday 17:00-22:00)</strong>
+*   <strong>样本量</strong>: 3,792 单 (占该渠道总单量 20.4%)
+*   <strong>核心指标</strong>: AOV ¥41.6 | UPT 2.4 | 折扣率 19.8%
+*   <strong>Top 3 商品</strong>:
+    1.  康咯咯安全蛋30枚 (销售额 ¥43,899)
+    2.  长安花低芥酸特香菜籽油5升 (¥23,056)
+    3.  洁柔卫生纸138g(金尊无芯）14卷 (¥11,529)</p>
+<p><strong>切片 B: 周末晚市 (Weekend 17:00-22:00)</strong>
+*   <strong>样本量</strong>: 1,880 单
+*   <strong>核心指标</strong>: AOV ¥39.9 | UPT 2.4 | 折扣率 20.1%
+*   <strong>Top 3 商品</strong>:
+    1.  康咯咯安全蛋30枚 (¥19,523)
+    2.  雨森棉韧速溶16卷卫生纸2000克 (¥8,220)
+    3.  长安花低芥酸特香菜籽油5升 (¥7,185)</p>
+<h3>2.2 数据现象</h3>
+<ol>
+<li><strong>商品集中度</strong>: 无论工作日还是周末，“康咯咯安全蛋30枚”均为该渠道 GMV 贡献第一的单品。</li>
+<li><strong>连带特征</strong>: 在工作日切片中，最高频的连带组合为 <code>康咯咯安全蛋30枚 + 洁柔卫生纸</code> (共现 386 次)。</li>
+<li><strong>价格带稳定性</strong>: 两个时间切片的 AOV 差异微小 (¥41.6 vs ¥39.9)，且 UPT 恒定在 2.4。</li>
+</ol>
+<hr />
+<h2>3. 渠道下钻：京东小时购 (场景差异分析)</h2>
+<h3>3.1 数据呈现：场景切片对比</h3>
+<p><strong>切片 A: 工作日晚市 (Workday 17:00-22:00)</strong>
+*   <strong>Top 3 商品</strong>:
+    1.  智利车厘子JJ 2.5KG
+    2.  飞鹤臻爱倍护幼儿配方奶粉900g
+    3.  润家原切羊肉卷420g</p>
+<p><strong>切片 B: 周末晚市 (Weekend 17:00-22:00)</strong>
+*   <strong>Top 3 商品</strong>:
+    1.  智美啤酒330ml
+    2.  金龙鱼黄金比例食用调和油(非转基因)5L
+    3.  【生态养殖】吊水桂鱼400g</p>
+<h3>3.2 数据现象</h3>
+<ol>
+<li><strong>商品结构变化</strong>: 该渠道在不同日期类型的同一种时段下，Top 商品列表几乎完全互斥。工作日集中在奶粉、冻肉；周末集中在酒水、生鲜鱼类。</li>
+<li><strong>客单波动</strong>: 周末晚市的 UPT (5.0) 高于工作日晚市 (4.3)。</li>
+</ol>
+<hr />
+<h2>4. 聚类结构分析 (Clustering)</h2>
+<h3>4.1 数据呈现</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">聚类标签</th>
+<th style="text-align: left;">平均客单 (AOV)</th>
+<th style="text-align: left;">平均件数 (UPT)</th>
+<th style="text-align: left;">订单占比</th>
+<th style="text-align: left;">主要分布渠道</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>标准购物</strong></td>
+<td style="text-align: left;">¥36.9</td>
+<td style="text-align: left;">2.2</td>
+<td style="text-align: left;">81.1%</td>
+<td style="text-align: left;">万家App (92%), 饿了么 (72%)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>标准购物(高)</strong></td>
+<td style="text-align: left;">¥49.5</td>
+<td style="text-align: left;">6.4</td>
+<td style="text-align: left;">11.5%</td>
+<td style="text-align: left;">饿了么 (17%), 美团 (22%)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>囤货大单</strong></td>
+<td style="text-align: left;">¥133.6</td>
+<td style="text-align: left;">13.5</td>
+<td style="text-align: left;">2.3%</td>
+<td style="text-align: left;">万家小程序 (12%), 京东 (10%)</td>
+</tr>
+</tbody>
+</table>
+<h3>4.2 数据现象</h3>
+<ol>
+<li><strong>长尾分布</strong>: 81.1% 的订单属于低客单、低件数的“标准购物”类，GMV 均值为 ¥36.9。</li>
+<li><strong>渠道分化</strong>:<ul>
+<li><strong>万家App</strong> 的订单高度集中在第一类（92.1%）。</li>
+<li><strong>万家小程序</strong> 和 <strong>京东小时购</strong> 在“囤货大单”聚类中的渗透率（约 10%）显著高于其他渠道（&lt;3%）。</li>
+</ul>
+</li>
+</ol>
+</body>
+</html>

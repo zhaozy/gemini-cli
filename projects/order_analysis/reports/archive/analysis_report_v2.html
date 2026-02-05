@@ -1,0 +1,159 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>深度洞察报告 v2</title>
+    
+<style>
+    body { font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; color: #24292e; }
+    h1, h2, h3 { border-bottom: 1px solid #eaecef; padding-bottom: .3em; }
+    table { border-collapse: collapse; width: 100%; margin: 15px 0; }
+    th, td { border: 1px solid #dfe2e5; padding: 6px 13px; }
+    th { background-color: #f6f8fa; font-weight: 600; }
+    tr:nth-child(2n) { background-color: #f6f8fa; }
+    code { background-color: rgba(27,31,35,.05); padding: .2em .4em; border-radius: 3px; }
+    .metric-box { display: inline-block; padding: 10px; margin: 5px; background: #f1f8ff; border-radius: 5px; border: 1px solid #c8e1ff; }
+</style>
+
+</head>
+<body>
+    <h1>深度洞察报告：零售渠道时空场货解构 (v2)</h1>
+<blockquote>
+<p><strong>分析综述</strong>: 本报告基于 2025-12-25 至 2026-01-13 的交易数据，对 <strong>万家App、美团外卖、饿了么、京东小时购</strong> 等核心渠道进行了全维度的下钻分析。通过 "Metrics + Cube + Clustering" 的组合拳，我们揭示了各渠道真实的生态位差异。</p>
+</blockquote>
+<h2>1. 战略概览：渠道生态位差异</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">渠道</th>
+<th style="text-align: left;">GMV贡献</th>
+<th style="text-align: left;">AOV (客单)</th>
+<th style="text-align: left;">UPT (客件)</th>
+<th style="text-align: left;">折扣率</th>
+<th style="text-align: left;">促销效率 (Uplift)</th>
+<th style="text-align: left;">核心角色</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>万家App</strong></td>
+<td style="text-align: left;"><strong>53.1%</strong></td>
+<td style="text-align: left;">¥41.7</td>
+<td style="text-align: left;">2.5件</td>
+<td style="text-align: left;"><strong>19.5%</strong></td>
+<td style="text-align: left;"><strong>-11.0%</strong> 📉</td>
+<td style="text-align: left;"><strong>流量基本盘</strong> (高频/低价/强促销)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>饿了么</strong></td>
+<td style="text-align: left;">22.9%</td>
+<td style="text-align: left;">¥41.9</td>
+<td style="text-align: left;">3.2件</td>
+<td style="text-align: left;">10.3%</td>
+<td style="text-align: left;">+2.6%</td>
+<td style="text-align: left;"><strong>日常补给站</strong> (中频/标品)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>美团外卖</strong></td>
+<td style="text-align: left;">20.3%</td>
+<td style="text-align: left;">¥56.2</td>
+<td style="text-align: left;">3.8件</td>
+<td style="text-align: left;">8.1%</td>
+<td style="text-align: left;">+4.4%</td>
+<td style="text-align: left;"><strong>品质即时达</strong> (高客单/低敏感)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>京东小时购</strong></td>
+<td style="text-align: left;">1.3%</td>
+<td style="text-align: left;"><strong>¥57.3</strong></td>
+<td style="text-align: left;"><strong>4.6件</strong></td>
+<td style="text-align: left;">6.9%</td>
+<td style="text-align: left;">+2.7%</td>
+<td style="text-align: left;"><strong>精致囤货仓</strong> (低频/大单)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>万家小程序</strong></td>
+<td style="text-align: left;">2.3%</td>
+<td style="text-align: left;">¥59.5</td>
+<td style="text-align: left;"><strong>5.0件</strong></td>
+<td style="text-align: left;">18.7%</td>
+<td style="text-align: left;"><strong>+43.5%</strong> 🚀</td>
+<td style="text-align: left;"><strong>潜力增长点</strong> (高促销弹性)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>关键发现</strong>:
+1.  <strong>促销黑洞</strong>: <strong>万家App</strong> 虽然贡献了过半 GMV，但其 <strong>93.7%</strong> 的订单都使用了促销，且促销反而拉低了客单价 (-11%)。这表明 App 端存在严重的“薅羊毛”现象，用户只买打折的低价品（如鸡蛋、卫生纸）。
+2.  <strong>高质量增长</strong>: <strong>万家小程序</strong> 展现了惊人的促销弹性 (+43%)。这里的用户在促销激励下愿意买更多、买更贵，建议将高价值营销资源向小程序倾斜。</p>
+<hr />
+<h2>2. 渠道深度解构 (Channel Deep Dive)</h2>
+<h3>2.1 万家App：被“鸡蛋”绑架的流量巨头</h3>
+<ul>
+<li><strong>核心画像</strong>: 典型的 <strong>"Workday Evening (工作日晚高峰)"</strong> 场景，服务于家庭餐桌和日用消耗。</li>
+<li><strong>爆品依赖</strong>: Top 5 商品（鸡蛋、油、纸、奶、面）贡献了极高比例。其中 <strong>"康咯咯安全蛋30枚"</strong> 是绝对的流量之王。</li>
+<li><strong>下钻场景：工作日晚市 (Workday Evening)</strong><ul>
+<li><strong>客群结构</strong>: 74% 的订单属于“标准购物 (¥33/2.4件)”。</li>
+<li><strong>促销真相</strong>: <strong>85%</strong> 的订单属于 High Promo (深折)。这进一步验证了“晚市大妈扫货”的假设。</li>
+<li><strong>连带陷阱</strong>: 高频连带是 <code>鸡蛋 + 卫生纸</code>。这是典型的“负毛利连带”，虽然量大，但不仅不赚钱，还占用了运力。</li>
+</ul>
+</li>
+</ul>
+<h3>2.2 美团外卖：中产阶级的“救急”首选</h3>
+<ul>
+<li><strong>核心画像</strong>: 客单价 (¥56.2) 显著高于 App/饿了么，且对折扣不敏感。</li>
+<li><strong>爆品差异</strong>: Top 5 中出现了 <strong>智利车厘子</strong> 和 <strong>五粮液</strong>。这说明美团用户愿意为“品质”和“即时性”支付溢价。</li>
+<li><strong>下钻场景：工作日晚市</strong><ul>
+<li><strong>客群结构</strong>: 出现了 <strong>13%</strong> 的“囤货大单 (¥93/10件)”和 <strong>11%</strong> 的“品质精选 (¥136/3件)”。高价值客户占比接近 1/4。</li>
+<li><strong>连带特征</strong>: <code>鸡蛋 + 方便面</code>，<code>鸡蛋 + 土豆</code>。虽然也有鸡蛋，但搭配的是方便速食或做饭刚需，而非卫生纸。</li>
+</ul>
+</li>
+</ul>
+<h3>2.3 京东小时购：从“奶粉”到“聚餐”的变脸</h3>
+<ul>
+<li><strong>核心画像</strong>: 拥有最高的件单量 (UPT 4.6)，用户倾向于一次性买齐。</li>
+<li><strong>场景大变脸</strong>:<ul>
+<li><strong>工作日晚市</strong>: Top 单品是 <strong>奶粉</strong>、<strong>羊肉卷</strong>、<strong>肥牛卷</strong>。这是典型的“宝妈”或“家庭晚餐”场景。</li>
+<li><strong>周末晚市</strong>: Top 单品变成了 <strong>智美啤酒</strong>、<strong>桂鱼</strong>、<strong>食用油</strong>。场景瞬间切换为 <strong>“周末聚餐/硬菜”</strong>。</li>
+</ul>
+</li>
+<li><strong>策略建议</strong>: 针对京东渠道，周中应主推母婴/简餐半成品，周末则应主推酒水/生鲜大菜。</li>
+</ul>
+<hr />
+<h2>3. 聚类分析总结 (Clustering Insights)</h2>
+<p>通过无监督学习，我们将所有订单划分为三类：</p>
+<ol>
+<li>
+<p><strong>标准购物 (Standard)</strong>:</p>
+<ul>
+<li><strong>特征</strong>: AOV ¥30-40, UPT 2-3件。</li>
+<li><strong>大本营</strong>: 万家App (92% 占比), 饿了么 (79% 占比)。</li>
+<li><strong>对策</strong>: 这是基本盘，需通过 <strong>"加一元换购"</strong> 等手段提升 UPT。</li>
+</ul>
+</li>
+<li>
+<p><strong>品质精选 (Quality)</strong>:</p>
+<ul>
+<li><strong>特征</strong>: AOV ¥100+, UPT 较低（单价高）。</li>
+<li><strong>大本营</strong>: 美团外卖 (11% 占比)。</li>
+<li><strong>对策</strong>: 提供高端生鲜、礼盒、酒水。</li>
+</ul>
+</li>
+<li>
+<p><strong>囤货大单 (Bulk)</strong>:</p>
+<ul>
+<li><strong>特征</strong>: AOV ¥100+, UPT &gt;8件。</li>
+<li><strong>大本营</strong>: 京东小时购 (9% 占比), 万家小程序 (31% 占比)。</li>
+<li><strong>对策</strong>: 适合推广 <strong>"家庭量贩装"</strong> 或 <strong>"周末大礼包"</strong>。</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h2>4. 行动建议 (Action Plan)</h2>
+<ol>
+<li><strong>止血</strong>: 万家 App 的促销效率极低。建议<strong>缩减 App 端针对“鸡蛋/卫生纸”的直接折扣</strong>，改为“满 69 换购”或“买油送蛋”，强制拉升客单价。</li>
+<li><strong>增效</strong>: <strong>万家小程序</strong> 是被低估的“高价值阵地”。建议将原本投在 App 的部分预算转移至小程序，测试“会员专享价”或“高端爆品预售”。</li>
+<li><strong>分时</strong>: 京东渠道应执行 <strong>“周中/周末双素材”</strong> 策略。周中推奶粉肉卷，周末推啤酒海鲜，精准命中场景需求。</li>
+</ol>
+</body>
+</html>

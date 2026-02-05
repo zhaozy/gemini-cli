@@ -1,0 +1,261 @@
+
+    <html>
+    <head>
+        <meta charset="utf-8"><title>V3诊断: 饿了么</title>
+        <style>
+            body { font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif; max-width: 1000px; margin: 0 auto; padding: 40px; color: #24292e; background-color: #f6f8fa; }
+            h1, h2, h3 { border-bottom: 1px solid #eaecef; padding-bottom: 0.3em; }
+            table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+            th, td { padding: 10px; border: 1px solid #dfe2e5; }
+            th { background: #f6f8fa; }
+            blockquote { border-left: 4px solid #dfe2e5; color: #6a737d; padding-left: 1em; margin: 20px 0; }
+            code { background-color: rgba(27,31,35,.05); padding: .2em .4em; border-radius: 3px; }
+        </style>
+    </head>
+    <body>
+        <h1>全链路经营诊断报告 (V3): 饿了么</h1>
+<blockquote>
+<p>分析深度: 数据科学家 + 咨询顾问级 | 日期: 2026-01-22</p>
+</blockquote>
+<h2>一、商品战略人格 (Product Strategy Matrix)</h2>
+<blockquote>
+<p><strong>指标口径</strong>:
+- <strong>渗透率</strong>: 包含该SKU的订单数 / 总订单数。反映流量深度。
+- <strong>带动系数</strong>: 订单总件数 - 1。反映该SKU拉动关联消费的能力。
+- <strong>刺客 (Assassin)</strong>: 低件单价且带动能力低于中位数的流量品，消耗履约成本。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">商品名称</th>
+<th style="text-align: left;">渗透率</th>
+<th style="text-align: left;">带动系数</th>
+<th style="text-align: left;">件单价</th>
+<th style="text-align: left;">战略人格</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">康咯咯安全蛋30枚</td>
+<td style="text-align: left;">22.4%</td>
+<td style="text-align: left;">1.89</td>
+<td style="text-align: left;">¥15.7</td>
+<td style="text-align: left;">Islands (孤岛)</td>
+</tr>
+<tr>
+<td style="text-align: left;">蒙牛特仑苏纯牛奶苗条装250ml*12</td>
+<td style="text-align: left;">4.3%</td>
+<td style="text-align: left;">0.84</td>
+<td style="text-align: left;">¥46.0</td>
+<td style="text-align: left;">Islands (孤岛)</td>
+</tr>
+<tr>
+<td style="text-align: left;">智利车厘子JJ 2.5KG</td>
+<td style="text-align: left;">1.7%</td>
+<td style="text-align: left;">0.38</td>
+<td style="text-align: left;">¥136.6</td>
+<td style="text-align: left;">Islands (孤岛)</td>
+</tr>
+<tr>
+<td style="text-align: left;">伊利金典纯牛奶250ml*12</td>
+<td style="text-align: left;">2.2%</td>
+<td style="text-align: left;">0.88</td>
+<td style="text-align: left;">¥40.0</td>
+<td style="text-align: left;">Islands (孤岛)</td>
+</tr>
+<tr>
+<td style="text-align: left;">洁柔卫生纸138g(金尊无芯）14卷</td>
+<td style="text-align: left;">3.6%</td>
+<td style="text-align: left;">1.13</td>
+<td style="text-align: left;">¥21.0</td>
+<td style="text-align: left;">Islands (孤岛)</td>
+</tr>
+<tr>
+<td style="text-align: left;">鲜活基围虾250g</td>
+<td style="text-align: left;">3.4%</td>
+<td style="text-align: left;">3.13</td>
+<td style="text-align: left;">¥16.3</td>
+<td style="text-align: left;">Islands (孤岛)</td>
+</tr>
+<tr>
+<td style="text-align: left;">红颜草莓500g</td>
+<td style="text-align: left;">1.7%</td>
+<td style="text-align: left;">3.27</td>
+<td style="text-align: left;">¥27.0</td>
+<td style="text-align: left;">Islands (孤岛)</td>
+</tr>
+<tr>
+<td style="text-align: left;">长安花低芥酸特香菜籽油5升</td>
+<td style="text-align: left;">0.7%</td>
+<td style="text-align: left;">0.81</td>
+<td style="text-align: left;">¥70.5</td>
+<td style="text-align: left;">Islands (孤岛)</td>
+</tr>
+<tr>
+<td style="text-align: left;">红颜草莓250g</td>
+<td style="text-align: left;">2.5%</td>
+<td style="text-align: left;">3.16</td>
+<td style="text-align: left;">¥15.6</td>
+<td style="text-align: left;">Islands (孤岛)</td>
+</tr>
+<tr>
+<td style="text-align: left;">老哥俩稻香米5kg</td>
+<td style="text-align: left;">0.9%</td>
+<td style="text-align: left;">1.06</td>
+<td style="text-align: left;">¥46.8</td>
+<td style="text-align: left;">Islands (孤岛)</td>
+</tr>
+<tr>
+<td style="text-align: left;">鲁花低芥酸特香菜籽油5L</td>
+<td style="text-align: left;">0.4%</td>
+<td style="text-align: left;">0.23</td>
+<td style="text-align: left;">¥99.9</td>
+<td style="text-align: left;">Islands (孤岛)</td>
+</tr>
+<tr>
+<td style="text-align: left;">金龙鱼特选原香菜籽油5升</td>
+<td style="text-align: left;">0.6%</td>
+<td style="text-align: left;">0.65</td>
+<td style="text-align: left;">¥59.4</td>
+<td style="text-align: left;">Islands (孤岛)</td>
+</tr>
+<tr>
+<td style="text-align: left;">智利车厘子JJJ 2.5KG</td>
+<td style="text-align: left;">0.2%</td>
+<td style="text-align: left;">0.56</td>
+<td style="text-align: left;">¥180.2</td>
+<td style="text-align: left;">Islands (孤岛)</td>
+</tr>
+<tr>
+<td style="text-align: left;">鲜活鲈鱼300g</td>
+<td style="text-align: left;">1.9%</td>
+<td style="text-align: left;">2.84</td>
+<td style="text-align: left;">¥13.0</td>
+<td style="text-align: left;">Islands (孤岛)</td>
+</tr>
+<tr>
+<td style="text-align: left;">伊利利乐枕纯牛奶240ml*16</td>
+<td style="text-align: left;">0.7%</td>
+<td style="text-align: left;">1.16</td>
+<td style="text-align: left;">¥29.9</td>
+<td style="text-align: left;">Islands (孤岛)</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>💡 <strong>客观解读</strong>: 该渠道渗透率排名前五的单品中，<strong>无</strong> 显著的“履约刺客”现象。带动系数最高的前三位商品分别为: 新鲜甜玉米850g, 粉西红柿400g, 润家原切肥牛卷200g。</p>
+</blockquote>
+<h2>二、价格引力与偏态 (Pricing Skewness)</h2>
+<blockquote>
+<p><strong>指标口径</strong>:
+- <strong>偏态系数 (Skewness)</strong>: (均值 - 众数) / 标准差。正值越大，说明被低客单订单“拖累”越严重。
+- <strong>促销效率 (Proxy)</strong>: 深折单AOV / 正价单AOV。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">指标</th>
+<th style="text-align: left;">均值 (Mean)</th>
+<th style="text-align: left;">中位数 (Median)</th>
+<th style="text-align: left;">众数 (Mode)</th>
+<th style="text-align: left;">偏态系数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">客单价 (AOV)</td>
+<td style="text-align: left;">¥41.9</td>
+<td style="text-align: left;">¥31.5</td>
+<td style="text-align: left;">¥16.0</td>
+<td style="text-align: left;">0.78</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>💡 <strong>客观解读</strong>: AOV 呈现 <strong>正偏态</strong> 分布。众数显著低于均值，说明存在大量低价值小单。 深折订单客单价为正价订单的 <strong>0.76倍</strong>。</p>
+</blockquote>
+<h2>三、篮筐品质与订单指纹 (Basket Analysis)</h2>
+<blockquote>
+<p><strong>指标口径</strong>:
+- <strong>孤儿单率</strong>: 仅包含1件商品的订单比例。反映配送成本风险。
+- <strong>3D 聚类</strong>: 基于 [件数, 类目数, GMV] 进行的无监督空间划分。</p>
+</blockquote>
+<ul>
+<li><strong>孤儿单占比</strong>: 28.8%</li>
+<li><strong>孤儿单元凶 Top 3</strong>: 康咯咯安全蛋30枚 (21.9%), 蒙牛特仑苏纯牛奶苗条装250ml*12 (8.6%), 洁柔卫生纸138g(金尊无芯）14卷 (7.0%)</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">客群指纹</th>
+<th style="text-align: left;">占比</th>
+<th style="text-align: left;">平均件数</th>
+<th style="text-align: left;">平均类目数</th>
+<th style="text-align: left;">平均客单</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Cluster_0</td>
+<td style="text-align: left;">27.8%</td>
+<td style="text-align: left;">4.7</td>
+<td style="text-align: left;">3.7</td>
+<td style="text-align: left;">¥61.3</td>
+</tr>
+<tr>
+<td style="text-align: left;">Cluster_1</td>
+<td style="text-align: left;">66.0%</td>
+<td style="text-align: left;">1.9</td>
+<td style="text-align: left;">1.6</td>
+<td style="text-align: left;">¥28.1</td>
+</tr>
+<tr>
+<td style="text-align: left;">Cluster_2</td>
+<td style="text-align: left;">6.1%</td>
+<td style="text-align: left;">11.3</td>
+<td style="text-align: left;">8.8</td>
+<td style="text-align: left;">¥101.2</td>
+</tr>
+</tbody>
+</table>
+<h2>四、时空生活嵌入 (Temporal TGI)</h2>
+<blockquote>
+<p><strong>指标口径</strong>:
+- <strong>TGI 指数</strong>: (时段内品类占比 / 全天该品类占比) * 100。&gt;100 表示该时段对该品类有显著偏好。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">时段 (Period)</th>
+<th style="text-align: left;">心智商品 (High TGI SKUs)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Noon</td>
+<td style="text-align: left;">南方黑芝麻核桃黑芝麻糊360g (TGI 469), 简约组合居家软底女凉拖鞋1*1 (TGI 469), 大宝美容洗面奶220g (TGI 469)</td>
+</tr>
+<tr>
+<td style="text-align: left;">Evening</td>
+<td style="text-align: left;">上海药皂硫磺除螨液体香皂500g (TGI 240), 简约组合圆形微波炉保鲜盒(三件)21 (TGI 240), 迪乐贝尔D9386尔樱桃熊保温杯750ml (TGI 240)</td>
+</tr>
+<tr>
+<td style="text-align: left;">Morning</td>
+<td style="text-align: left;">博锐电吹风PH1630 (TGI inf), 嫩姜330g (TGI 756), 野人日记魔芋燕麦鸡胸肉蒸饺500g (TGI 680)</td>
+</tr>
+<tr>
+<td style="text-align: left;">Afternoon</td>
+<td style="text-align: left;">阿诺相思双皮奶280 (TGI 562), 得力扑克牌(金装) (TGI 562), 农夫山泉东方树叶绿茶500ml (TGI 562)</td>
+</tr>
+<tr>
+<td style="text-align: left;">LateNight</td>
+<td style="text-align: left;">李锦记沙茶酱198g (TGI 2202), 北纬47度低GI水果玉米汁300g (TGI 2202), 九洲丰园有机蔬菜泥馒头320g (TGI 2202)</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>💡 <strong>客观解读</strong>: 周末异动系数为 <strong>1.69</strong>。该仓具有明显的‘<strong>生活/囤货型</strong>’特征。</p>
+</blockquote>
+    </body>
+    </html>
+    
