@@ -1,0 +1,19 @@
+{
+  "commands": [
+    {
+      "command": "/analyze",
+      "description": "按照 SOP 执行深度分析",
+      "sop_reference": "core_logic.md"
+    },
+    {
+      "command": "/report",
+      "description": "生成标准化进度报告",
+      "sop_reference": "reporting_standard.md"
+    },
+    {
+      "command": "/guard",
+      "description": "运行 env_guard.sh 检查命令安全性",
+      "script_reference": "scripts/env_guard.sh"
+    }
+  ]
+}

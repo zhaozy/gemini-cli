@@ -1,0 +1,9 @@
+{
+  "commands": [
+    {
+      "command": "/audit_copy",
+      "description": "调用 scripts/copy_auditor.py 进行品牌调性与文案合规审计",
+      "script_reference": "scripts/copy_auditor.py"
+    }
+  ]
+}

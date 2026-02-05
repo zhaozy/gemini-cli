@@ -1,0 +1,41 @@
+#!/bin/bash
+# Enforced Project Creation Tool
+if [ -z "$1" ]; then
+    echo "Usage: $0 <project_name>"
+    exit 1
+fi
+
+PROJECT_NAME=$1
+TARGET_PATH="projects/$PROJECT_NAME"
+
+if [ -d "$TARGET_PATH" ]; then
+    echo "Error: Project $PROJECT_NAME already exists in projects/ directory."
+    exit 1
+fi
+
+echo "Creating new project: $PROJECT_NAME inside projects/ container..."
+
+# Create directory structure
+mkdir -p "$TARGET_PATH/.gemini/tasks"
+
+# Deploy Project Constitution
+if [ -f "gemini-scaffold/templates/PROJECT_GEMINI.md" ]; then
+    sed "s/{{PROJECT_NAME}}/$PROJECT_NAME/g" gemini-scaffold/templates/PROJECT_GEMINI.md > "$TARGET_PATH/GEMINI.md"
+else
+    # Fallback if scaffold not present
+    echo "# Project Context: $PROJECT_NAME" > "$TARGET_PATH/GEMINI.md"
+fi
+
+# Initialize tasks
+touch "$TARGET_PATH/.gemini/tasks/"{current_task,memory,implementation_plan,walkthrough}.md
+
+# NEW: Initialize independent Git repo for the project
+cd "$TARGET_PATH"
+git init -q
+echo "/datas/" > .gitignore
+echo "/reports/" >> .gitignore
+git add .
+git commit -m "chore: 项目初始化 (Cognitive Anchor established)" -q
+cd - > /dev/null
+
+echo "✓ Successfully initialized project at $TARGET_PATH as a standalone Git repo."

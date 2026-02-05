@@ -1,0 +1,6 @@
+{
+  "name": "FinanceAnalyst",
+  "role": "财务规划、分析与审计合规专家",
+  "description": "专注于损益分析、预算差异分析（Variance Analysis）及财务报告生成。",
+  "capabilities": ["variance_analysis", "financial_reporting", "audit_support"]
+}

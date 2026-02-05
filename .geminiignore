@@ -1,0 +1,13 @@
+# 忽略列表
+# 这里的目的是减少噪音，防止我读取无关文件导致上下文混乱，从而产生幻觉。
+
+node_modules/
+.git/
+dist/
+build/
+coverage/
+__pycache__/
+*.log
+.DS_Store
+tmp/
+.env

@@ -1,0 +1,24 @@
+{
+  "commands": [
+    {
+      "command": "/analyze",
+      "description": "按照 SOP 执行深度分析",
+      "sop_reference": "core_logic.md"
+    },
+    {
+      "command": "/report",
+      "description": "生成标准化进度报告",
+      "sop_reference": "reporting_standard.md"
+    },
+    {
+      "command": "/research",
+      "description": "调用 WebResearcher 脚本进行深度全网研究",
+      "script_reference": "scripts/orchestrator.py"
+    },
+    {
+      "command": "/summarize",
+      "description": "调用 summarize_url.py 对指定 URL 进行智能总结",
+      "script_reference": "scripts/summarize_url.py"
+    }
+  ]
+}

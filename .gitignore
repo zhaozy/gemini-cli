@@ -1,0 +1,15 @@
+# --- 根目录忽略逻辑 (只管理框架) ---
+.venv/
+__pycache__/
+.ruff_cache/
+.DS_Store
+
+# 忽略所有业务项目的内容 (因为它们将是独立仓库)
+projects/**/*
+!projects/**/.gitkeep
+!projects/**/GEMINI.md
+
+# 忽略临时认知
+.gemini/tasks/walkthrough.md
+.gemini/tasks/implementation_plan.md
+.gemini/tmp/

@@ -1,0 +1,14 @@
+{
+  "commands": [
+    {
+      "command": "/check_variance",
+      "description": "调用 scripts/variance_calc.py 计算财务实际值与预算值的差异",
+      "script_reference": "scripts/variance_calc.py"
+    },
+    {
+      "command": "/analyze_pnl",
+      "description": "执行 P&L 损益分析 SOP",
+      "sop_reference": "SOPs/finance_standards.md"
+    }
+  ]
+}

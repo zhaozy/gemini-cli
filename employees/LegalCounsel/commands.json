@@ -1,0 +1,14 @@
+{
+  "commands": [
+    {
+      "command": "/triage_nda",
+      "description": "执行 NDA 自动化分诊逻辑",
+      "sop_reference": "SOPs/nda_triage.md"
+    },
+    {
+      "command": "/compare_clauses",
+      "description": "调用 scripts/clause_diff.py 比对标准条款与目标条款的差异",
+      "script_reference": "scripts/clause_diff.py"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "{{EMPLOYEE_NAME}}",
+  "role": "{{ROLE_DESCRIPTION}}",
+  "version": "1.0.0",
+  "description": "{{DETAILED_GOAL}}",
+  "capabilities": [
+    "autonomous_workflow",
+    "sop_adherence",
+    "structured_reporting"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "WorkflowManager",
+  "role": "数字劳动力系统管理员",
+  "description": "负责数字雇员的入职、离职、SOP 升级及跨专家协同。",
+  "capabilities": [
+    "workforce_management",
+    "sop_versioning",
+    "cross_expert_sync",
+    "environment_guarding"
+  ]
+}

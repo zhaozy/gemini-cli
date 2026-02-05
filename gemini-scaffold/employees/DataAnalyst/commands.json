@@ -1,0 +1,14 @@
+{
+  "commands": [
+    {
+      "command": "/audit_sql",
+      "description": "调用 scripts/sql_auditor.py 进行 SQL 静态安全审计",
+      "script_reference": "scripts/sql_auditor.py"
+    },
+    {
+      "command": "/verify_stats",
+      "description": "按照 statistical_validation.md 执行统计显著性校验",
+      "sop_reference": "SOPs/statistical_validation.md"
+    }
+  ]
+}
