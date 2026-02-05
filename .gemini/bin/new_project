@@ -1,5 +1,5 @@
 #!/bin/bash
-# Enforced Project Creation Tool
+# Independent Project Creation Tool (v2.0)
 if [ -z "$1" ]; then
     echo "Usage: $0 <project_name>"
     exit 1
@@ -9,33 +9,34 @@ PROJECT_NAME=$1
 TARGET_PATH="projects/$PROJECT_NAME"
 
 if [ -d "$TARGET_PATH" ]; then
-    echo "Error: Project $PROJECT_NAME already exists in projects/ directory."
+    echo "Error: Project $PROJECT_NAME already exists."
     exit 1
 fi
 
-echo "Creating new project: $PROJECT_NAME inside projects/ container..."
+echo "Creating INDEPENDENT project: $PROJECT_NAME..."
 
-# Create directory structure
+# 1. 建立结构
 mkdir -p "$TARGET_PATH/.gemini/tasks"
-
-# Deploy Project Constitution
-if [ -f "gemini-scaffold/templates/PROJECT_GEMINI.md" ]; then
-    sed "s/{{PROJECT_NAME}}/$PROJECT_NAME/g" gemini-scaffold/templates/PROJECT_GEMINI.md > "$TARGET_PATH/GEMINI.md"
-else
-    # Fallback if scaffold not present
-    echo "# Project Context: $PROJECT_NAME" > "$TARGET_PATH/GEMINI.md"
-fi
-
-# Initialize tasks
+cp gemini-scaffold/templates/PROJECT_GEMINI.md "$TARGET_PATH/GEMINI.md"
 touch "$TARGET_PATH/.gemini/tasks/"{current_task,memory,implementation_plan,walkthrough}.md
 
-# NEW: Initialize independent Git repo for the project
+# 2. 初始化独立仓库
 cd "$TARGET_PATH"
 git init -q
-echo "/datas/" > .gitignore
-echo "/reports/" >> .gitignore
+cat > .gitignore <<EOF
+/datas/
+/reports/
+__pycache__/
+.DS_Store
+EOF
 git add .
-git commit -m "chore: 项目初始化 (Cognitive Anchor established)" -q
+git commit -m "chore: 项目初始化 (独立认知仓库已建立)" -q
 cd - > /dev/null
 
-echo "✓ Successfully initialized project at $TARGET_PATH as a standalone Git repo."
+echo "------------------------------------------------"
+echo "✓ 协作单元已在 $TARGET_PATH 初始化完成。"
+echo "⚠ 下一步：请在 GitHub 上创建名为 $PROJECT_NAME 的空仓库，并运行："
+echo "  cd $TARGET_PATH"
+echo "  git remote add origin <远程仓库地址>"
+echo "  git push origin master -u"
+echo "------------------------------------------------"

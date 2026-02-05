@@ -1,10 +1,10 @@
-# --- 根目录忽略逻辑 (只管理框架) ---
+# --- 根目录管理逻辑 (System Only) ---
 .venv/
 __pycache__/
 .ruff_cache/
 .DS_Store
 
-# 忽略所有业务项目的内容 (因为它们将是独立仓库)
+# 强制忽略所有业务项目内容 (独立仓库管理)
 projects/**/*
 !projects/**/.gitkeep
 !projects/**/GEMINI.md
