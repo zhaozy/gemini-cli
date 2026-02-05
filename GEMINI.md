@@ -94,6 +94,12 @@
 3. **认知恢复**：优先读取最近修改的 `.gemini/tasks/current_task.md`，重建上一次会话的“认知现场”。
 4. **主动汇报**：简要概述“上一次状态”及“建议的后续步骤”。
 
-## 8. 工程卫生 (Engineering Hygiene)
+## 9. 版本控制工作流 (Git Workflow)
 
-> "Write code as if the guy who ends up maintaining your code is a violent psychopath who knows where you live."
+所有协作单元和系统层必须遵循“先存档、后变更”的原则：
+
+1. **自动快照**：利用 `.gemini/bin/git_save` 进行阶段性提交。
+
+2. **分支开发**：重大功能变更或风险实验必须使用 `git_task start` 开启分支。
+
+3. **线性历史**：保持主分支的整洁，通过 Merge Commit 记录任务合并。

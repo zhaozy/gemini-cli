@@ -1,0 +1,18 @@
+#!/bin/bash
+# Task Brancher: Start/Finish task branches
+ACTION=$1 # start/finish
+TASK_NAME=$2
+
+if [ "$ACTION" == "start" ]; then
+    BRANCH_NAME="feat/${TASK_NAME:-'work'}"
+    git checkout -b "$BRANCH_NAME"
+    echo "Started new task branch: $BRANCH_NAME"
+elif [ "$ACTION" == "finish" ]; then
+    CURRENT=$(git branch --show-current)
+    git checkout master || git checkout main
+    git merge "$CURRENT" --no-ff -m "merge: 完成任务 $CURRENT"
+    git branch -d "$CURRENT"
+    echo "Merged and closed task: $CURRENT"
+else
+    echo "Usage: $0 <start|finish> [task_name]"
+fi

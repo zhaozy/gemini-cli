@@ -1,0 +1,25 @@
+#!/bin/bash
+# Smart Git Save: Local Commit + Auto Push
+set -e
+
+# 1. 自动生成提交信息
+if [ -f ".gemini/tasks/walkthrough.md" ]; then
+    LAST_LOG=$(tail -n 10 .gemini/tasks/walkthrough.md | grep "-" | tail -n 1 | sed 's/^- //')
+    MSG="progress: ${LAST_LOG:-'Update via gemini-cli'}"
+else
+    MSG="chore: routine maintenance"
+fi
+
+# 2. 执行本地提交
+git add .
+if git commit -m "$MSG"; then
+    echo "✓ 本地快照已保存: $MSG"
+    
+    # 3. 尝试推送至远程 (如果有配置 remote)
+    if git remote | grep -q "origin"; then
+        echo "正在同步至 GitHub..."
+        git push origin $(git branch --show-current) --quiet && echo "✓ GitHub 同步成功。" || echo "⚠ 推送失败，请检查网络或权限。"
+    fi
+else
+    echo "没有检测到变更，无需保存。"
+fi
